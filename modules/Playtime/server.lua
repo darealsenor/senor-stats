@@ -86,8 +86,8 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        Wait(5000)
-        lib.print.debug('Its been 5 seconds, lets update the SQL')
+        Wait(Config.PlaytimeInterval)
+        lib.print.debug('SQL Playtime Update')
         _Playtime:UpdateSQL()
     end
 end)

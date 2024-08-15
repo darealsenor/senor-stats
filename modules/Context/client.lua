@@ -8,7 +8,7 @@ AddEventHandler('senor-stats:client:OpenContext-PersonalStats',
 
     local KD = (data.kills / data.headshot)
     local KDFormat = KD < 0 and KD or '0'
-    print(KD < 0)
+
     local options = {
         {title = string.format('%s Kills', data.kills), icon = Enums.Icons['kills']},
         {title = string.format('%s Deaths', data.deaths), icon = Enums.Icons['deaths']},
@@ -96,7 +96,6 @@ AddEventHandler('senor-stats:client:OpenContext-Leaderboard', function()
                     local subOptions = {}
                     local result = lib.callback.await('senor-stats:server:ObtainTop10', false, category)
 
-                    print(json.encode(result))
 
                     lib.registerContext({
                         id = string.format('%s_leaderboard', category),

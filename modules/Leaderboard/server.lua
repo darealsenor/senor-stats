@@ -5,7 +5,6 @@ lib.callback.register('senor-stats:server:ObtainTop10', function(source, categor
 
     local formattedData = {}
     for _, data in each(response) do
-        print(string.format('%s %s', data[category], category))
         if category == 'playtime' then
             data[category] = SecondsToClock(data[category])
         end

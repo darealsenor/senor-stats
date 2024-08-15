@@ -1,6 +1,7 @@
 local Kill = lib.class('Kill')
 function Kill:constructor()
     self.EventLog = lib.array:new();
+    self.size = 1
 end
 
 function Kill:tostring()
@@ -24,7 +25,7 @@ function Kill:onKill(killerId, victimId, weapon, headshot)
     self.size = self.size + 1;
 
     if self.size >= Config.UpdateSQLOn_Kills then
-        BulkUpdate(self.EventLog)
+        self:SQLInsert()
         self.size = 1
     end
 end
@@ -59,7 +60,6 @@ function Kill:SQLInsert()
 
         local success = MySQL.transaction.await(queries)
         if success then
-            print('Inserted to SQL')
             _Kill:ResetLog()
         end
 end
