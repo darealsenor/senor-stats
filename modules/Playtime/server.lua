@@ -80,14 +80,13 @@ AddEventHandler('onResourceStart', function(resourceName)
         local identifier = GetPlayerIdentifierByType(v, 'license')
     
         _Playtime:AddPlayer(identifier)
-        _Playtime:tostring()
+        -- _Playtime:tostring()
     end
 end)
 
 Citizen.CreateThread(function()
     while true do
         Wait(Config.PlaytimeInterval)
-        lib.print.debug('SQL Playtime Update')
         _Playtime:UpdateSQL()
     end
 end)

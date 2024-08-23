@@ -1,4 +1,4 @@
-local function GetPlayer(identifier)
+function GetPlayer(identifier)
     local row = MySQL.single.await('SELECT * FROM `players_stats` WHERE `identifier` = ? LIMIT 1', {
         identifier
     })

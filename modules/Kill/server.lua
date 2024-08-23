@@ -60,6 +60,7 @@ function Kill:SQLInsert()
 
         local success = MySQL.transaction.await(queries)
         if success then
+            print('Inserted to SQL')
             _Kill:ResetLog()
         end
 end
@@ -69,7 +70,7 @@ end
 RegisterNetEvent('senor-stats:server:onPlayerKilled')
 AddEventHandler('senor-stats:server:onPlayerKilled', function(killerId, victimId, weapon, headshot)
     _Kill:onKill(killerId, victimId, weapon, headshot)
-    _Kill:tostring()
+    -- _Kill:tostring()
 end)
 
 

@@ -14,5 +14,6 @@ lib.callback.register('senor-stats:server:ObtainTop10', function(source, categor
             icon = Enums.Icons[category],
         }
     end
+
     return formattedData
 end)

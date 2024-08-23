@@ -1,13 +1,15 @@
 RegisterNetEvent('senor-stats:client:OpenContext-PersonalStats')
 AddEventHandler('senor-stats:client:OpenContext-PersonalStats',
                 function(data, name, displaysettings, id)
+
+    print(json.encode(data),name, displaysettings, id)
     local dpiString = data.dpi ~= 0 and tostring(data.dpi) or
                           'The user hasn\'t updated his DPI'
     local sensString = data.sens ~= -1 and tostring(data.sens) or
                            'The user havent updated his sensitvity'
 
-    local KD = (data.kills / data.headshot)
-    local KDFormat = KD < 0 and KD or '0'
+    local KD = (data.kills / data.deaths)
+    local KDFormat = KD > 0 and KD or '0'
 
     local options = {
         {title = string.format('%s Kills', data.kills), icon = Enums.Icons['kills']},
@@ -95,7 +97,6 @@ AddEventHandler('senor-stats:client:OpenContext-Leaderboard', function()
                 onSelect = function()
                     local subOptions = {}
                     local result = lib.callback.await('senor-stats:server:ObtainTop10', false, category)
-
 
                     lib.registerContext({
                         id = string.format('%s_leaderboard', category),
